@@ -13,7 +13,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='pymt5',
-    version='1.0.0',
+    version='1.1.0',
     description='Simplified interfaces to MetaTrader 5 gateway',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -27,8 +27,12 @@ setup(
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.4',
+        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
     keywords='metatrader, metaquotes, mt5, gateway, api, python',
