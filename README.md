@@ -120,7 +120,7 @@ Deal            | `'ver':'3','type':7'` | `'exchange_id'`,`'order'`,`'symbol'`,`
 External Deal   | `'ver':'3','type':50'`| `'exchange_id'`,`'order'`,`'symbol'`,`'login'`,`'type_deal'`,`'volume'`,<br />`'volume_rem'`,`'price'`
 
 ## Support
-* Get a [DevCartel MT5 Gateway](http://devcartel.com/mt5gateway) in order to work with PyMT5
+* Get a [DevCartel MT5 Gateway](http://devcartel.com/devcartelgateway64) in order to work with PyMT5
 * Report an issue in [issue tracker](https://github.com/devcartel/pymt5/issues)
 
 ## Changelog
