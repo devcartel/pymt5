@@ -116,8 +116,8 @@ Symbol          | `'ver':'3','type':3'` | `'index'`,`'symbol'`,`'path'`,`'descri
 Tick            | `'ver':'3','type':4'` | `'symbol'`,`'bank'`,`'bid'`,`'ask'`,`'last'`,`'volume'`,`'datetime'`
 Order           | `'ver':'3','type':5'` | `'symbol'`,`'bank'`,`'bid'`,`'ask'`,`'last'`,`'volume'`,`'datetime'`,<br />`'order_action'`,`'state'`,`'order'`,`'exchange_id'`,`'custom_data'`,<br />`'request_id'`,`'symbol'`,`'login'`,`'type_order'`,`'type_time'`,<br />`'action'`,`'price_order'`,`'price_sl'`,`'price_tp'`,`'price_tick_bid'`,<br />`'price_tick_ask'`,`'volume'`,`'expiration_time'`,`'result'`
 Heartbeat       | `'ver':'3','type':6'` | _None_
-Deal            | `'ver':'3','type':7'` | `'exchange_id'`,`'order'`,`'symbol'`,`'login'`,`'type_deal'`,`'volume'`,<br />`'volume_rem'`,`'price'`,`'datetime'`
-External Deal   | `'ver':'3','type':50'`| `'exchange_id'`,`'order'`,`'symbol'`,`'login'`,`'type_deal'`,`'volume'`,<br />`'volume_rem'`,`'price'`
+Deal            | `'ver':'3','type':7'` | `'exchange_id'`,`'order'`,`'symbol'`,`'login'`,`'type_deal'`,`'volume'`,<br />`'volume_rem'`,`'price'`
+External Deal   | `'ver':'3','type':50'`| `'exchange_id'`,`'order'`,`'symbol'`,`'login'`,`'type_deal'`,`'volume'`,<br />`'volume_rem'`,`'price'`,`'datetime'`
 
 ## Support
 * Get a [DevCartel MT5 Gateway](http://devcartel.com/devcartelgateway64) in order to work with PyMT5
