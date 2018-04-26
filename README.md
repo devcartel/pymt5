@@ -112,11 +112,11 @@ Data type       | Header                | Tags
 ----------------|-----------------------|------
 Login           | `'ver':'3','type':1'` | `'login'`,`'password'`,`'res'`
 Logout          | `'ver':'3','type':2'` | _None_
-Symbol          | `'ver':'3','type':3'` | `'index'`,`'symbol'`,`'path'`,`'description'`,`'page'`,`'currency_base'`,<br />`'currency_profit'`,`'currency_margin'`,`'digits'`,`'tick_flags'`,<br />`'calc_mode'`,`'exec_mode'`,`'chart_mode'`,`'fill_flags'`,`'expir_flags'`,<br />`'tick_value'`,`'tick_size'`,`'contract_size'`,`'volume_min'`,<br />`'volume_max'`,`'volume_step'`,`'market_depth'`,`'margin_flags'`,<br />`'margin_initial'`,`'margin_maintenance'`,`'margin_long'`,<br />`'margin_short'`,`'margin_limit'`,`'margin_stop'`,`'margin_stop_limit'`,<br />`'settlement_price'`,`'price_limit_max'`,`'price_limit_min'`,<br />`'time_start'`,`'time_expiration'`,`'trade_mode'`
+Symbol          | `'ver':'3','type':3'` | `'index'`,`'symbol'`,`'path'`,`'description'`,`'page'`,`'currency_base'`,<br />`'currency_profit'`,`'currency_margin'`,`'digits'`,`'tick_flags'`,<br />`'calc_mode'`,`'exec_mode'`,`'chart_mode'`,`'fill_flags'`,<br />`'expir_flags'`,`'tick_value'`,`'tick_size'`,`'contract_size'`,<br />`'volume_min'`,`'volume_max'`,`'volume_step'`,`'market_depth'`,<br />`'margin_flags'`,`'margin_initial'`,`'margin_maintenance'`,<br />`'margin_long'`,`'margin_short'`,`'margin_limit'`,`'margin_stop'`,<br />`'margin_stop_limit'`,`'settlement_price'`,`'price_limit_max'`,<br />`'price_limit_min'`,`'time_start'`,`'time_expiration'`,`'trade_mode'`
 Tick            | `'ver':'3','type':4'` | `'symbol'`,`'bank'`,`'bid'`,`'ask'`,`'last'`,`'volume'`,`'datetime'`
 Order           | `'ver':'3','type':5'` | `'symbol'`,`'bank'`,`'bid'`,`'ask'`,`'last'`,`'volume'`,`'datetime'`,<br />`'order_action'`,`'state'`,`'order'`,`'exchange_id'`,`'custom_data'`,<br />`'request_id'`,`'symbol'`,`'login'`,`'type_order'`,`'type_time'`,<br />`'action'`,`'price_order'`,`'price_sl'`,`'price_tp'`,`'price_tick_bid'`,<br />`'price_tick_ask'`,`'volume'`,`'expiration_time'`,`'result'`
 Heartbeat       | `'ver':'3','type':6'` | _None_
-Deal            | `'ver':'3','type':7'` | `'exchange_id'`,`'order'`,`'symbol'`,`'login'`,`'type_deal'`,`'volume'`,<br />`'volume_rem'`,`'price'`
+Deal            | `'ver':'3','type':7'` | `'exchange_id'`,`'order'`,`'symbol'`,`'login'`,`'type_deal'`,`'volume'`,<br />`'volume_rem'`,`'price'`,`'datetime'`
 External Deal   | `'ver':'3','type':50'`| `'exchange_id'`,`'order'`,`'symbol'`,`'login'`,`'type_deal'`,`'volume'`,<br />`'volume_rem'`,`'price'`
 
 ## Support
