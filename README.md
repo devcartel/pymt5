@@ -97,7 +97,7 @@ A callback `onDisconnected`, if assigned, is called upon a disconnection from a 
 
 __pymt5.onData(_data_)__  
 _data: dict_  
-A callback `onData`, if assigned, is called upon receiving messages from gateways. See [Data Format](#Data Format) for more information.
+A callback `onData`, if assigned, is called upon receiving messages from gateways. See [Data Format](#data-format) for more information.
 
     >> def onData(data):
     >>     print(json.dumps(data))
