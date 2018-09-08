@@ -6,7 +6,7 @@
 
 Provides simplified, multithreaded, socket-based Python interfaces to MT5 gateways. PyMT5 requires a [DevCartel MT5 gateway](http://devcartel.com/devcartelgateway64) installed in the MT5 platform to work with PyMT5.
 
-![application](http://media.virbcdn.com/files/fa/cb0fbed83c8c2468-pymt5.png)
+![application](http://media.virbcdn.com/cdn_images/resize_1024x1365/d3/bbfed93e2dab1106-ScreenShot2018-09-08at102030.png)
 
 ## Installation
 PyMT5 supports both Python 2 and 3. Simply install from [PyPI](https://pypi.org/project/pymt5) using `pip`:
