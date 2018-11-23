@@ -37,6 +37,8 @@ m.onData = onData
 
 ```
 
+Checkout more message [examples](https://github.com/devcartel/pymt5/tree/master/examples).
+
 ## API
 __pymt5.PyMT5([_host=''_], [_port=16838_])__  
 _host: str_  
@@ -46,7 +48,7 @@ Starts a PyMT5 server and listening on a port defined by _port_.
 
     >> m = pymt5.PyMT5()
 
-Upon incoming connection from a gateway, PyMT5 stores client information in `pymt5.requests` in dict format as 
+Upon incoming connection from a gateway, PyMT5 stores client information in `pymt5.requests` in dict format as
 
 __pymt5.stop()__  
 Disconnects all MT5 gateway connections and stop the server.
@@ -56,7 +58,7 @@ Disconnects all MT5 gateway connections and stop the server.
 __pymt5.broadcast(_data_)__  
 _data: dict_  
 Sends a message to all connected gateways. Consider using this when sending market data.
-    
+
     >> #send a tick
     >> m.broadcast({'ver':'3','type':'4','symbol':'EURUSD.TEST','bank':'dc','bid':'1.2661','ask':'1.2665','last':'1.2665','volume':'1','datetime':'0'})
 
@@ -84,7 +86,7 @@ A callback `onConnected`, if assigned, is called upon a successful connection fr
     >>
     >> m = pymt5.PyMT5()
     >> m.onConnected = onConnected
-    
+
 __pymt5.onDisconnected(<i>client_info</i>)__   
 <i>client_info: dict</i>  
 A callback `onDisconnected`, if assigned, is called upon a disconnection from a client. Client information can be accessed from `client_info`'s values as `client_id`, `client_address` and `client_port`.
