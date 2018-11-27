@@ -1,4 +1,4 @@
-,# PyMT5
+# PyMT5
 [![version](https://img.shields.io/pypi/v/pymt5.svg)](https://pypi.org/project/pymt5)
 [![pyversion](https://img.shields.io/pypi/pyversions/pymt5.svg)](#)
 [![platform](https://img.shields.io/badge/platform-linux|%20win-lightgray.svg)](#platform-availability)
