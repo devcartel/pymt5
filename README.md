@@ -30,7 +30,7 @@ def onData(data):
                         'type':'1',
                         'login':data.get('login'),
                         'password':data.get('password'),
-                        'res','0'})
+                        'res':'0'})
 
 m = pymt5.PyMT5()
 m.onConnected = onConnected
