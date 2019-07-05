@@ -5,7 +5,7 @@
 [![license](https://img.shields.io/pypi/l/pymt5.svg)](https://github.com/devcartel/pymt5/blob/master/LICENSE.txt)
 [![downloads](https://img.shields.io/pypi/dm/pymt5.svg)](https://pypi.org/project/pymt5)
 
-Provides simplified, multithreaded, socket-based Python interfaces to MT5 gateways. PyMT5 requires a [DevCartel MT5 gateway](http://devcartel.com/devcartelgateway64) installed in the MT5 platform to work with PyMT5.
+Provides simplified, multithreaded, socket-based Python interfaces to MT5 gateways. PyMT5 requires a [DevCartel MT5 gateway](https://github.com/devcartel/devcartelgateway64) installed on the MT5 platform to work with PyMT5.
 
 <p align="center">
     <img src="http://media.virbcdn.com/cdn_images/resize_1024x1365/5b/ac5a58aa5703cc1b-ScreenShot2018-09-08at103035.png" alt="application" width="800"/>
