@@ -130,6 +130,12 @@ Data is to be composed as a dict with key/value defined below to be sent and rec
 * Report an issue in [issue tracker](https://github.com/devcartel/pymt5/issues)
 
 ## Changelog
+1.2.0
+* 8 July 2019
+* Support for Python 3.7
+* Update support links
+* Add examples
+
 1.1.0
 * 21 April 2018
 * Released on PyPI
