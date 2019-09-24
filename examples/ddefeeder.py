@@ -6,14 +6,27 @@ from collections import OrderedDict
 import json
 exec(open('./ddeclient.py').read())
 
+symbols = [
+
+'CRUDEOIL V19-MCX',
+'GOLD Z19-MCX',
+'BANKNIFTY U19-NSF',
+
+]
+maps = {
+
+'CRUDEOIL V19-MCX' : 'CRUDEOIL-1',
+'GOLD Z19-MCX' : 'GOLD-1',
+'BANKNIFTY U19-NSF' : 'BANKNIFTY-1',
+
+}
 clients = {}
 indices = {}
 quotes = {}
-symbols = ['CRUDEOIL V19-MCX']
-maps = {
-    'CRUDEOIL V19-MCX': 'CRUDEOIL-1'
-}
 
+##################
+# PyMT5 handlers
+##################
 def onConnected(client_info):
     client = client_info.get('client_id')
     clients[client] = client_info
@@ -116,20 +129,32 @@ def onLogout(data):
     print("MT5 - onLogout - data:{}".format(json.dumps(data)))
     print("MT5 - onLogout - clients:{}".format(str(list(clients))))
 
+######################
+# DDE client callback
+######################
 class ESignal(DDEClient):
     def callback(self, value, topic=None, item=None):
         print("eSignal - %s - %s=%s" % (item.decode('euc-kr'), topic.decode('euc-kr'), value.decode('euc-kr')))
         symbol = item.decode('euc-kr')
+        #quotes[maps[symbol]]['datetime'] = str(int(round(time.time() * 1000))).replace('L','')[:-3]
+        # Best bid/ask
         if topic.decode('euc-kr') == 'bid':
             quotes[maps[symbol]]['bid'] = value.decode('euc-kr')
         if topic.decode('euc-kr') == 'ask':
             quotes[maps[symbol]]['ask'] = value.decode('euc-kr')
+            quotes[maps[symbol]]['last'] = '0'
+            quotes[maps[symbol]]['volume'] = '0'
+            print("MT5 - sendTick - data:{}".format(str(dict(quotes[maps[symbol]]))))
+            m.broadcast(quotes[maps[symbol]])
+        # Last and volume
         if topic.decode('euc-kr') == 'last':
             quotes[maps[symbol]]['last'] = value.decode('euc-kr')
-        if topic.decode('euc-kr') == 'totalvol':
+        if topic.decode('euc-kr') == 'tradesize':
+            quotes[maps[symbol]]['bid'] = ''
+            quotes[maps[symbol]]['ask'] = ''
             quotes[maps[symbol]]['volume'] = value.decode('euc-kr')
-        print("MT5 - sendTick - data:{}".format(str(dict(quotes[maps[symbol]]))))
-        m.broadcast(quotes[maps[symbol]])
+            print("MT5 - sendTick - data:{}".format(str(dict(quotes[maps[symbol]]))))
+            m.broadcast(quotes[maps[symbol]])
 
 ##################
 # Main
@@ -148,13 +173,21 @@ time.sleep(10)
 bid = ESignal("WINROS", "bid")
 ask = ESignal("WINROS", "ask")
 last = ESignal("WINROS", "last")
-totalvol = ESignal("WINROS", "totalvol")
+tradesize = ESignal("WINROS", "tradesize")
 for symbol in symbols:
-    quotes[maps[symbol]] = OrderedDict([('ver','3'),('type','4'),('symbol',maps[symbol]),('bank','esignal'),('bid','0'),('ask','0'),('last','0'),('volume','0'),('datetime','0')])
+    quotes[maps[symbol]] = OrderedDict([('ver','3'),
+                                        ('type','4'),
+                                        ('symbol',maps[symbol]),
+                                        ('bank','esignal'),
+                                        ('bid','0'),
+                                        ('ask','0'),
+                                        ('last','0'),
+                                        ('volume','0'),
+                                        ('datetime','0')])
     bid.advise(symbol)
     ask.advise(symbol)
     last.advise(symbol)
-    totalvol.advise(symbol)
+    tradesize.advise(symbol)
 
 # Event loop
 end = False
