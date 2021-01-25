@@ -5,6 +5,7 @@ import signal
 from collections import OrderedDict
 import json
 import random
+import string
 
 clients = []
 bid = float(random.randrange(12660, 12680))/10000
@@ -70,20 +71,22 @@ def sendOrderComplete(client, order):
     m.send(client, order)
 
 def sendDeal(client, order):
-    global deal
+    exchange_id = '0'
+    while exchange_id.startswith('0'):
+        exchange_id = ''.join(random.choice(string.digits) for i in range(8))
     deal =  OrderedDict([('ver','3'),
                          ('type','7'),
-                         ('exchange_id','99'+order['order']),
+                         ('exchange_id',exchange_id),
                          ('order',order['order']),
                          ('symbol',order['symbol']),
                          ('login',order['login']),
                          ('type_deal',order['type_order']),
                          ('volume',order['volume']),
                          ('volume_rem','0'),
-                         ('price','1.2665')])
+                         ('price','1.2679')])
     m.send(client, deal)
 
-def sendDealExternal(client, exchange_id, symbol, login, type_deal, volume, price):
+def sendDealExternal(client, exchange_id, symbol, login, type_deal, volume, price, datetime='1611339821000'):
     deal =  OrderedDict([('ver','3'),
                          ('type','50'),
                          ('exchange_id',exchange_id),
@@ -93,7 +96,8 @@ def sendDealExternal(client, exchange_id, symbol, login, type_deal, volume, pric
                          ('type_deal',type_deal),
                          ('volume',volume),
                          ('volume_rem','0'),
-                         ('price',price)])
+                         ('price',price),
+                         ('datetime',datetime)])
     m.send(client, deal)
 
 def sendTick():
@@ -165,8 +169,14 @@ def onData(data):
         order = data
         del order['client_id']
         # Market
-        if order['action'] == '3':
+        if order['action'] == '2':
             sendOrderConfirmed(client, order)
+        elif order['action'] == '3':
+            sendOrderConfirmed(client, order)
+        elif order['action'] in ('4','5'):
+            sendOrderPlaced(client, order)
+            sendOrderNew(client, order)
+            sendDeal(client, order)
         else:
             sendOrderRejectNew(client, order)
 
