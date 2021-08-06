@@ -33,10 +33,11 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
             try:
                 buffer = self.request.recv(MSG_MAX_SIZE)
                 if not buffer: break
-                data = OrderedDict(re.findall("(?:^|"+MSG_SEPARATOR_TAG+")?(.*?)"+MSG_SEPARATOR_TAGVALUE+"(.*?)"+MSG_SEPARATOR_TAG, buffer.decode('utf-8')))
-                if data and callable(self.server.onData):
-                    data.update({'client_id':cur_thread.ident})
-                    self.server.onData(data)
+                for decoded in buffer.decode('utf-8').split(MSG_SEPARATOR):
+                    data = OrderedDict(re.findall("(.*?)"+MSG_SEPARATOR_TAGVALUE+"(.*?)"+MSG_SEPARATOR_TAG, decoded))
+                    if data and callable(self.server.onData):
+                        data.update({'client_id':cur_thread.ident})
+                        self.server.onData(data)
             except socket.error:
                 break
         if callable(self.server.onDisconnected) and (self.request in requests):
@@ -53,13 +54,13 @@ class PyMT5(socketserver.ThreadingTCPServer):
         self.onConnected = None
         self.onDisconnected = None
         self.onData = None
-        
+
     def stop(self):
         for request in list(self.requests):
             self.shutdown_request(request)
         self.shutdown()
         self.server_close()
-    
+
     def broadcast(self, data):
         msg = ''
         for k,v in data.items():
