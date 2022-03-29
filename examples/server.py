@@ -74,13 +74,14 @@ def sendDeal(client, order):
     exchange_id = '0'
     while exchange_id.startswith('0'):
         exchange_id = ''.join(random.choice(string.digits) for i in range(8))
+    # type_deal: 0=buy, 1=sell
     deal =  OrderedDict([('ver','3'),
                          ('type','7'),
                          ('exchange_id',exchange_id),
                          ('order',order['order']),
                          ('symbol',order['symbol']),
                          ('login',order['login']),
-                         ('type_deal',order['type_order']),
+                         ('type_deal','0'),
                          ('volume',order['volume']),
                          ('volume_rem','0'),
                          ('price','1.2679')])
@@ -173,6 +174,7 @@ def onData(data):
             sendOrderConfirmed(client, order)
         elif order['action'] == '3':
             sendOrderConfirmed(client, order)
+        # Limit
         elif order['action'] in ('4','5'):
             sendOrderPlaced(client, order)
             sendOrderNew(client, order)
