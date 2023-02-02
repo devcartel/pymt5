@@ -130,6 +130,10 @@ Data is to be composed as a dict with key/value defined below to be sent and rec
 * Report an issue in [issue tracker](https://github.com/devcartel/pymt5/issues)
 
 ## Changelog
+1.4.0
+* 30 October 2022
+* Fix potential data loss due to data fragmentation
+ 
 1.3.0
 * 8 August 2021
 * Fix parsing data buffer

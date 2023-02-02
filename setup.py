@@ -13,7 +13,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='pymt5',
-    version='1.3.0',
+    version='1.4.0',
     description='Python API for MetaTrader 5 gateways',
     long_description=long_description,
     long_description_content_type='text/markdown',
