@@ -13,7 +13,7 @@ from collections import OrderedDict
 MSG_SEPARATOR               = '\n'
 MSG_SEPARATOR_TAG           = '\x01'
 MSG_SEPARATOR_TAGVALUE      = '='
-MSG_MAX_SIZE                = 10*1024
+MSG_MAX_SIZE                = 4096
 
 socketserver.TCPServer.allow_reuse_address = True
 
@@ -29,15 +29,19 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                                       'client_port':self.client_address[1]}
             if callable(self.server.onConnected):
                 self.server.onConnected(requests[self.request])
+        buffer = b''
         while True:
             try:
-                buffer = self.request.recv(MSG_MAX_SIZE)
-                if not buffer: break
-                for decoded in buffer.decode('utf-8').split(MSG_SEPARATOR):
-                    data = OrderedDict(re.findall("(.*?)"+MSG_SEPARATOR_TAGVALUE+"(.*?)"+MSG_SEPARATOR_TAG, decoded))
-                    if data and callable(self.server.onData):
-                        data.update({'client_id':cur_thread.ident})
-                        self.server.onData(data)
+                part = self.request.recv(MSG_MAX_SIZE)
+                if not part: break
+                buffer += part
+                if len(part) < MSG_MAX_SIZE:
+                    for decoded in buffer.decode('utf-8').split(MSG_SEPARATOR):
+                        data = OrderedDict(re.findall("(.*?)"+MSG_SEPARATOR_TAGVALUE+"(.*?)"+MSG_SEPARATOR_TAG, decoded))
+                        if data and callable(self.server.onData):
+                            data.update({'client_id':cur_thread.ident})
+                            self.server.onData(data)
+                    buffer = b''
             except socket.error:
                 break
         if callable(self.server.onDisconnected) and (self.request in requests):
